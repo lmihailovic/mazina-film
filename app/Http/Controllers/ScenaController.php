@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Film;
 use App\Models\Scena;
+use App\Models\Zaposleni;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -75,21 +76,31 @@ class ScenaController extends Controller
         $this->authorize('update', $scena);
 
         $films = Film::pluck('Naziv', 'FilmId');
+        $zaposleni = Zaposleni::all();
 
-        return view('app.scenas.edit', compact('scena', 'films'));
+        return view('app.scenas.edit', compact('scena', 'films', 'zaposleni'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(
-        ScenaUpdateRequest $request,
-        Scena $scena
-    ): RedirectResponse {
+    public function update(ScenaUpdateRequest $request, Scena $scena): RedirectResponse
+    {
         $this->authorize('update', $scena);
 
-        $validated = $request->validated();
+        if ($request->has('action') && $request->has('zaposleni_id')) {
+            if ($request->action === 'hire') {
+                $scena->zaposlenis()->attach($request->zaposleni_id);
+            } elseif ($request->action === 'release') {
+                $scena->zaposlenis()->detach($request->zaposleni_id);
+            }
 
+            return redirect()
+                ->route('scenas.edit', $scena)
+                ->withSuccess(__('crud.common.saved'));
+        }
+
+        $validated = $request->validated();
         $scena->update($validated);
 
         return redirect()

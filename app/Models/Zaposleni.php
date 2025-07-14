@@ -19,6 +19,6 @@ class Zaposleni extends Model
 
     public function scenas()
     {
-        return $this->belongsToMany(Scena::class);
+        return $this->belongsToMany(Scena::class, "scena_zaposleni", "zaposleni_id", "scena_id");
     }
 }

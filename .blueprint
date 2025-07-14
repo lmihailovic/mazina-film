@@ -1,0 +1,51 @@
+created:
+    - app/Http/Controllers/UserController.php
+    - app/Http/Controllers/ZanrController.php
+    - app/Http/Controllers/FilmController.php
+    - app/Http/Controllers/ScenaController.php
+    - app/Http/Controllers/ZaposleniController.php
+    - database/factories/ZanrFactory.php
+    - database/factories/FilmFactory.php
+    - database/factories/ScenaFactory.php
+    - database/factories/ZaposleniFactory.php
+    - database/migrations/2025_07_14_133412_create_zanrs_table.php
+    - database/migrations/2025_07_14_133413_create_films_table.php
+    - database/migrations/2025_07_14_133414_create_scenas_table.php
+    - database/migrations/2025_07_14_133415_create_zaposlenis_table.php
+    - database/migrations/2025_07_14_133416_create_scena_zaposleni_table.php
+    - app/Models/Zanr.php
+    - app/Models/Film.php
+    - app/Models/Scena.php
+    - app/Models/Zaposleni.php
+    - tests/Feature/Http/Controllers/UserControllerTest.php
+    - tests/Feature/Http/Controllers/ZanrControllerTest.php
+    - tests/Feature/Http/Controllers/FilmControllerTest.php
+    - tests/Feature/Http/Controllers/ScenaControllerTest.php
+    - tests/Feature/Http/Controllers/ZaposleniControllerTest.php
+    - resources/views/user/index.blade.php
+    - resources/views/user/create.blade.php
+    - resources/views/user/show.blade.php
+    - resources/views/user/edit.blade.php
+    - resources/views/zanr/index.blade.php
+    - resources/views/zanr/create.blade.php
+    - resources/views/zanr/show.blade.php
+    - resources/views/zanr/edit.blade.php
+    - resources/views/film/index.blade.php
+    - resources/views/film/create.blade.php
+    - resources/views/film/show.blade.php
+    - resources/views/film/edit.blade.php
+    - resources/views/scena/index.blade.php
+    - resources/views/scena/create.blade.php
+    - resources/views/scena/show.blade.php
+    - resources/views/scena/edit.blade.php
+    - resources/views/zaposleni/index.blade.php
+    - resources/views/zaposleni/create.blade.php
+    - resources/views/zaposleni/show.blade.php
+    - resources/views/zaposleni/edit.blade.php
+updated:
+    - routes/web.php
+models:
+    Zanr: { Naziv: 'string:50', relationships: { hasMany: Film } }
+    Film: { zanr_id: 'id foreign', Naziv: 'string:100', Status: 'enum:planiran,u_produkciji,u_postprodukciji,objavljen,otkazan', Budzet: 'decimal:10,2', DatumIzlaska: date, relationships: { belongsTo: Zanr, hasMany: Scena } }
+    Scena: { film_id: 'id foreign', Lokacija: 'string:255', DatumSnimanja: date, relationships: { belongsTo: Film, belongsToMany: Zaposleni } }
+    Zaposleni: { Ime: 'string:20', Prezime: 'string:20', Uloga: 'string:255', Status: 'enum:aktivan,neaktivan,otpušten', relationships: { belongsToMany: Scena } }
