@@ -12,6 +12,7 @@ class Scena extends Model
     use Searchable;
 
     protected $fillable = ['film_id', 'Lokacija', 'DatumSnimanja'];
+    protected $primaryKey = 'ScenaId';
 
     protected $searchableFields = ['*'];
 
