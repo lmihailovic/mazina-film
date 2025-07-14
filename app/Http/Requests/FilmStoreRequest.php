@@ -22,11 +22,9 @@ class FilmStoreRequest extends FormRequest
         return [
             'zanr_id' => ['required', 'exists:zanrs,ZanrId'],
             'Naziv' => ['required', 'max:100', 'string'],
-            'Status' => ['required', 'max:100', 'string'],
-            'Budzet' => [
-                'nullable',
-                'in:predprodukcija,produkcija,postprodukcija,pauza,planiranje,distribucija,arhiviran',
+            'Status' => ['in:predprodukcija,produkcija,postprodukcija,pauza,planiranje,distribucija,arhiviran',
             ],
+            'Budzet' => ['required', 'numeric', 'min:0'],
             'DatumIzlaska' => ['nullable', 'date'],
         ];
     }
