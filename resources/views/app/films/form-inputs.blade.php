@@ -23,19 +23,8 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12">
-        <x-inputs.text
-            name="Status"
-            label="Status"
-            :value="old('Status', ($editing ? $film->Status : ''))"
-            maxlength="100"
-            placeholder="Status"
-            required
-        ></x-inputs.text>
-    </x-inputs.group>
-
-    <x-inputs.group class="col-sm-12">
-        <x-inputs.select name="Budzet" label="Budzet">
-            @php $selected = old('Budzet', ($editing ? $film->Budzet : '')) @endphp
+        <x-inputs.select name="Status" label="Status">
+            @php $selected = old('Status', ($editing ? $film->Status : '')) @endphp
             <option value="predprodukcija" {{ $selected == 'predprodukcija' ? 'selected' : '' }} >Predprodukcija</option>
             <option value="produkcija" {{ $selected == 'produkcija' ? 'selected' : '' }} >Produkcija</option>
             <option value="postprodukcija" {{ $selected == 'postprodukcija' ? 'selected' : '' }} >Postprodukcija</option>
@@ -45,6 +34,18 @@
             <option value="arhiviran" {{ $selected == 'arhiviran' ? 'selected' : '' }} >Arhiviran</option>
         </x-inputs.select>
     </x-inputs.group>
+
+    <x-inputs.group class="col-sm-12">
+        <x-inputs.number
+            name="Budzet"
+            label="Budžet"
+            :value="old('Budzet', ($editing ? $film->Budzet : ''))"
+            step="0.01"
+            placeholder="Unesite budžet"
+            required
+        />
+    </x-inputs.group>
+
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.date
