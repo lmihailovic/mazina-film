@@ -19,6 +19,8 @@ class Film extends Model
         'DatumIzlaska',
     ];
 
+    protected $primaryKey = 'FilmId';
+
     protected $searchableFields = ['*'];
 
     public $timestamps = false;

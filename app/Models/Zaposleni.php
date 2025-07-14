@@ -12,7 +12,7 @@ class Zaposleni extends Model
     use Searchable;
 
     protected $fillable = ['Ime', 'Prezime', 'Uloga', 'Status'];
-
+    protected $primaryKey = 'ZaposleniId';
     protected $searchableFields = ['*'];
 
     public $timestamps = false;

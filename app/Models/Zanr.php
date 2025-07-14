@@ -12,6 +12,7 @@ class Zanr extends Model
     use Searchable;
 
     protected $fillable = ['Naziv'];
+    protected $primaryKey = 'ZanrId';
 
     protected $searchableFields = ['*'];
 
