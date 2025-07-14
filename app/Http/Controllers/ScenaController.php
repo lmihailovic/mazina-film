@@ -65,6 +65,8 @@ class ScenaController extends Controller
     {
         $this->authorize('view', $scena);
 
+        $scena->load('zaposlenis');
+
         return view('app.scenas.show', compact('scena'));
     }
 
