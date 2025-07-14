@@ -1,0 +1,49 @@
+models:
+
+  Zanr:
+    Naziv: string:50
+    relationships:
+      hasMany: Film
+
+  Film:
+    zanr_id: id foreign
+    Naziv: string:100
+    Status: enum:planiran,u_produkciji,u_postprodukciji,objavljen,otkazan
+    Budzet: decimal:10,2
+    DatumIzlaska: date
+    relationships:
+      belongsTo: Zanr
+      hasMany: Scena
+
+  Scena:
+    film_id: id foreign
+    Lokacija: string:255
+    DatumSnimanja: date
+    relationships:
+      belongsTo: Film
+      belongsToMany: Zaposleni
+
+  Zaposleni:
+    Ime: string:20
+    Prezime: string:20
+    Uloga: string:255
+    Status: enum:aktivan,neaktivan,otpušten
+    relationships:
+      belongsToMany: Scena
+
+controllers:
+
+  User:
+    resource
+
+  Zanr:
+    resource
+
+  Film:
+    resource
+
+  Scena:
+    resource
+
+  Zaposleni:
+    resource
