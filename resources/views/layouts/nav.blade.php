@@ -23,19 +23,19 @@
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             @can('view-any', App\Models\Film::class)
-                            <a class="dropdown-item" href="{{ route('films.index') }}">Films</a>
+                            <a class="dropdown-item" href="{{ route('films.index') }}">Filmovi</a>
                             @endcan
                             @can('view-any', App\Models\Scena::class)
-                            <a class="dropdown-item" href="{{ route('scenas.index') }}">Scenas</a>
+                            <a class="dropdown-item" href="{{ route('scenas.index') }}">Scene</a>
                             @endcan
                             @can('view-any', App\Models\User::class)
-                            <a class="dropdown-item" href="{{ route('users.index') }}">Users</a>
+                            <a class="dropdown-item" href="{{ route('users.index') }}">Korisnici</a>
                             @endcan
                             @can('view-any', App\Models\Zanr::class)
-                            <a class="dropdown-item" href="{{ route('zanrs.index') }}">Zanrs</a>
+                            <a class="dropdown-item" href="{{ route('zanrs.index') }}">Zanrovi</a>
                             @endcan
                             @can('view-any', App\Models\Zaposleni::class)
-                            <a class="dropdown-item" href="{{ route('zaposlenis.index') }}">Zaposlenis</a>
+                            <a class="dropdown-item" href="{{ route('zaposlenis.index') }}">Zaposleni</a>
                             @endcan
                         </div>
 
