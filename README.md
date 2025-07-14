@@ -5,5 +5,8 @@ Projekat je izrađen u `Laravel` frameworku, korišćenjem
 
 Integrisano razvojno okruženje je `PhpStorm`
 
+## ToDo
+- [ ] Ograniči brisanje samo na admin korisnika
+
 ## Snimci ekrana
 Coming soon(tm)
