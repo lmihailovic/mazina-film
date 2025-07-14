@@ -14,18 +14,8 @@ return new class extends Migration {
             $table->bigIncrements('FilmId');
             $table->unsignedBigInteger('zanr_id');
             $table->string('Naziv', 100);
-            $table->string('Status', 100);
-            $table
-                ->enum('Budzet', [
-                    'predprodukcija',
-                    'produkcija',
-                    'postprodukcija',
-                    'pauza',
-                    'planiranje',
-                    'distribucija',
-                    'arhiviran',
-                ])
-                ->nullable();
+            $table->enum('Status', ["predprodukcija","produkcija","postprodukcija","pauza","planiranje","distribucija","arhiviran"]);
+            $table->decimal('Budzet', 10, 2)->nullable();
             $table->date('DatumIzlaska')->nullable();
         });
     }
