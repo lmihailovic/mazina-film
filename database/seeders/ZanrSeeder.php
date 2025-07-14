@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Zanr;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ZanrSeeder extends Seeder
 {
@@ -12,8 +13,12 @@ class ZanrSeeder extends Seeder
      */
     public function run(): void
     {
-        Zanr::factory()
-            ->count(5)
-            ->create();
+        DB::table('zanrs')->insert([
+            ['ZanrID' => 1, 'Naziv' => 'Western'],
+            ['ZanrID' => 2, 'Naziv' => 'Drama'],
+            ['ZanrID' => 3, 'Naziv' => 'Komedija'],
+            ['ZanrID' => 4, 'Naziv' => 'Akcija'],
+            ['ZanrID' => 5, 'Naziv' => 'Triler'],
+        ]);
     }
 }

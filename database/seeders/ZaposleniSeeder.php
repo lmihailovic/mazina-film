@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Zaposleni;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ZaposleniSeeder extends Seeder
 {
@@ -12,8 +13,28 @@ class ZaposleniSeeder extends Seeder
      */
     public function run(): void
     {
-        Zaposleni::factory()
-            ->count(5)
-            ->create();
+        DB::table('zaposlenis')->insert([
+            [
+                'ZaposleniID' => 1,
+                'Ime' => 'Marko',
+                'Prezime' => 'Markovic',
+                'Uloga' => 'Glumac',
+                'Status' => 'aktivan',
+            ],
+            [
+                'ZaposleniID' => 2,
+                'Ime' => 'Jelena',
+                'Prezime' => 'Jovic',
+                'Uloga' => 'Tonac',
+                'Status' => 'aktivan',
+            ],
+            [
+                'ZaposleniID' => 3,
+                'Ime' => 'Nikola',
+                'Prezime' => 'Petrovic',
+                'Uloga' => 'Gafer',
+                'Status' => 'odsutan',
+            ],
+        ]);
     }
 }
