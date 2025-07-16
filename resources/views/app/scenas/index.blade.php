@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-body">
             <div style="display: flex; justify-content: space-between;">
-                <h4 class="card-title">@lang('crud.scenas.index_title')</h4>
+                <h4 class="card-title">Scene</h4>
             </div>
 
             <div class="searchbar mt-4 mb-5">
