@@ -14,11 +14,11 @@
             <ul class="navbar-nav mr-auto">
                 @auth
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('home') }}">Početna</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            Apps <span class="caret"></span>
+                            Podaci <span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -32,7 +32,7 @@
                             <a class="dropdown-item" href="{{ route('users.index') }}">Korisnici</a>
                             @endcan
                             @can('view-any', App\Models\Zanr::class)
-                            <a class="dropdown-item" href="{{ route('zanrs.index') }}">Zanrovi</a>
+                            <a class="dropdown-item" href="{{ route('zanrs.index') }}">Žanrovi</a>
                             @endcan
                             @can('view-any', App\Models\Zaposleni::class)
                             <a class="dropdown-item" href="{{ route('zaposlenis.index') }}">Zaposleni</a>
