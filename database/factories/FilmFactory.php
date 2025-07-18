@@ -24,8 +24,8 @@ class FilmFactory extends Factory
     {
         return [
             'Naziv' => $this->faker->text(100),
-            'Status' => $this->faker->word(),
-            'Budzet' => 'predprodukcija',
+            'Status' => 'predprodukcija',
+            'Budzet' => $this->faker->randomFloat(2, 1000, 1000),
             'DatumIzlaska' => $this->faker->date(),
             'zanr_id' => \App\Models\Zanr::factory(),
         ];

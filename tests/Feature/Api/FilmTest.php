@@ -69,7 +69,7 @@ class FilmTest extends TestCase
         $data = [
             'Naziv' => $this->faker->text(100),
             'Status' => $this->faker->word(),
-            'Budzet' => 'predprodukcija',
+            'Budzet' => 104532.24,
             'DatumIzlaska' => $this->faker->date(),
             'zanr_id' => $zanr->ZanrId,
         ];
