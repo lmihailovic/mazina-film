@@ -19,7 +19,7 @@ class ScenaControllerTest extends TestCase
     {
         parent::setUp();
 
-        $user = User::factorcy()->create(['email' => 'admin@admin.com']);
+        $user = User::factory()->create(['email' => 'admin@admin.com']);
         $this->actingAs($user);
 
         $this->withoutExceptionHandling();

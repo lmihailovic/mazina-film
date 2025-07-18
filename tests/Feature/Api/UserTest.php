@@ -68,7 +68,7 @@ class UserTest extends TestCase
         $data = [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique->email(),
-            'role' => 'admin',
+            'role' => 'zaposleni',
         ];
 
         $data['password'] = \Str::random('8');
