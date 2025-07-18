@@ -31,7 +31,7 @@ class ScenaPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->role === 'admin' || $user->role === 'rukovodilac';
     }
 
     /**
@@ -39,7 +39,7 @@ class ScenaPolicy
      */
     public function update(User $user, Scena $model): bool
     {
-        return true;
+        return $user->role === 'admin' || $user->role === 'rukovodilac';
     }
 
     /**
@@ -47,7 +47,7 @@ class ScenaPolicy
      */
     public function delete(User $user, Scena $model): bool
     {
-        return true;
+        return $user->role === 'admin';
     }
 
     /**

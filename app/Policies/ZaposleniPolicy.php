@@ -31,7 +31,7 @@ class ZaposleniPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->role === 'admin' || $user->role === 'rukovodilac';
     }
 
     /**
@@ -39,7 +39,7 @@ class ZaposleniPolicy
      */
     public function update(User $user, Zaposleni $model): bool
     {
-        return true;
+        return $user->role === 'admin' || $user->role === 'rukovodilac';
     }
 
     /**
@@ -47,7 +47,7 @@ class ZaposleniPolicy
      */
     public function delete(User $user, Zaposleni $model): bool
     {
-        return true;
+        return $user->role === 'admin';
     }
 
     /**
