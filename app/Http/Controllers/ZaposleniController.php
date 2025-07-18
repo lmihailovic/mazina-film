@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Zaposleni;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -61,7 +62,13 @@ class ZaposleniController extends Controller
     {
         $this->authorize('view', $zaposleni);
 
-        return view('app.zaposlenis.show', compact('zaposleni'));
+        $scenes = $zaposleni->scenas()
+            ->with('film')
+            ->orderBy('DatumSnimanja')
+            ->get();
+
+
+        return view('app.zaposlenis.show', compact('zaposleni', 'scenes'));
     }
 
     /**
@@ -101,10 +108,29 @@ class ZaposleniController extends Controller
     ): RedirectResponse {
         $this->authorize('delete', $zaposleni);
 
-        $zaposleni->delete();
+        // Start a database transaction
+        DB::beginTransaction();
+        try {
+            if (auth()->user()->role === 'rukovodilac') {
+                // For rukovodilac: set status to neaktivan and remove scene associations
+                $zaposleni->scenas()->detach(); // Remove all scene associations
+                $zaposleni->Status = 'neaktivan';
+                $zaposleni->save();
+            } else {
+                // For admin: perform actual delete
+                $zaposleni->delete();
+            }
 
-        return redirect()
-            ->route('zaposlenis.index')
-            ->withSuccess(__('crud.common.removed'));
+            DB::commit();
+            return redirect()
+                ->route('zaposlenis.index')
+                ->withSuccess(__('crud.common.removed'));
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()
+                ->route('zaposlenis.index')
+                ->withError('Greška tokom procesovanja zahteva.');
+        }
+
     }
 }

@@ -47,7 +47,7 @@ class ZaposleniPolicy
      */
     public function delete(User $user, Zaposleni $model): bool
     {
-        return $user->role === 'admin';
+        return $user->role === 'admin' || $user->role === 'rukovodilac';
     }
 
     /**
